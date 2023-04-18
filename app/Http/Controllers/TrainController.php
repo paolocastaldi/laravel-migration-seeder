@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Treno;
+use App\Http\Controllers\Controller;
+use App\Models\Train;
 use Illuminate\Http\Request;
 
-class TrainController extends Controller
+class PageController extends Controller
 {
-    public function index() {
+    public function dbRequest(){
+        $trains = Train::all();
 
-        $trains = Treno::where('departure_time', '>=', now())->get();
-
+        
         $data = [
             'trains' => $trains
         ];
-
-        
-
-        return view('trains.index', $data);
+        return view('welcome', $data);
     }
 }
